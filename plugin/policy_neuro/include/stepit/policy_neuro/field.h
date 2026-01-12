@@ -40,6 +40,7 @@ class FieldSource {
 
  protected:
   FieldId registerRequirement(const std::string &field_name);
+  FieldId registerRequirement(FieldId field_id);
   FieldId registerProvision(const std::string &field_name, std::uint32_t size);
 
   std::set<FieldId> requirements_, provisions_;

@@ -1,5 +1,5 @@
-#ifndef STEPIT_NEURO_POLICY_JOINT_REORDER_H_
-#define STEPIT_NEURO_POLICY_JOINT_REORDER_H_
+#ifndef STEPIT_NEURO_POLICY_JOINT_REORDERING_H_
+#define STEPIT_NEURO_POLICY_JOINT_REORDERING_H_
 
 #include <stepit/policy_neuro/field.h>
 
@@ -37,4 +37,4 @@ class ActionReordering : public FieldSource {
 }  // namespace neuro_policy
 }  // namespace stepit
 
-#endif  // STEPIT_NEURO_POLICY_JOINT_REORDER_H_
+#endif  // STEPIT_NEURO_POLICY_JOINT_REORDERING_H_

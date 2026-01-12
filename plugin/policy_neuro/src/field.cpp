@@ -5,9 +5,12 @@ template class RegistrySingleton<neuro_policy::FieldSource, const PolicySpec &, 
 
 namespace neuro_policy {
 FieldId FieldSource::registerRequirement(const std::string &field_name) {
-  FieldId id = registerField(field_name, 0);
-  requirements_.insert(id);
-  return id;
+  return registerRequirement(registerField(field_name, 0));
+}
+
+FieldId FieldSource::registerRequirement(FieldId field_id) {
+  requirements_.insert(field_id);
+  return field_id;
 }
 
 FieldId FieldSource::registerProvision(const std::string &field_name, std::uint32_t size) {

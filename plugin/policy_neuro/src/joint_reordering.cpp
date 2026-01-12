@@ -1,11 +1,11 @@
 #include <algorithm>
 
-#include <stepit/policy_neuro/joint_reorder.h>
+#include <stepit/policy_neuro/joint_reordering.h>
 
 namespace stepit {
 namespace neuro_policy {
 JointReordering::JointReordering(const PolicySpec &, const std::string &home_dir) {
-  auto cfg = yml::loadFile(home_dir + "/joint_order.yml");
+  auto cfg = yml::loadFile(home_dir + "/joint_reordering.yml");
   yml::setTo(cfg, "order", joint_order_);
   yml::setIf(cfg, "reversed", joint_reversed_);
 

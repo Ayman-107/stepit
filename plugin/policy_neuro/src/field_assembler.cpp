@@ -13,7 +13,9 @@ FieldAssembler::FieldAssembler(const PolicySpec &, const std::string &home_dir)
     yml::setTo(node.first, target_field_name);
     STEPIT_ASSERT(node.second.IsSequence(), "Definition for '{}' must be a sequence.", target_field_name);
     for (const auto &item : node.second) {
-      component_ids.push_back(registerRequirement(yml::readAs<std::string>(item)));
+      auto field_id = registerField(yml::readAs<std::string>(item), 0);
+      if (provisions_.find(field_id) == provisions_.end()) registerRequirement(field_id);
+      component_ids.push_back(field_id);
     }
 
     target_ids_.push_back(registerProvision(target_field_name, 0));

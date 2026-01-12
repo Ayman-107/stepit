@@ -5,8 +5,8 @@ tailored: go2        # [Optional] String, name of the robot this policy is tailo
 
 actuator:            # [Optional] actuator configuration
   type: position     #   [Optional] Literal["position", "velocity", "torque", "hybrid"], type of the actuator
-  Kp: 30.0           #   [Optional] Float or List[Float], proportional gain for PD controller
-  Kd: 1.0            #   [Optional] Float or List[Float], derivative gain for PD controller
+  Kp: 30.0           #   [Optional] Union[Float, List[Float]], proportional gain for PD controller
+  Kd: 1.0            #   [Optional] Union[Float, List[Float]], derivative gain for PD controller
   bias:              #   [Optional] List[Float], bias for the target joint position
     - 0.0
     - 0.7
