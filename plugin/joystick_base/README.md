@@ -2,15 +2,16 @@
 
 StepIt plugin providing joystick interface and control.
 
-Provided interfaces:
+### Provided Interfaces
 
 - `stepit::joystick::Joystick`
 
-Provided factories:
+### Provided Factories
 
 - `stepit::ControlInput`: `joystick`
 
-Key bindings:
+### Joystick Key Bindings
+
 - `LAS`[^1] + `RAS`[^2]: Set the agent to the frozen mode, disabling all controls.
 - `LT`[^3] + `X`: Resume the agent from the frozen mode.
 - `LT` + `A`: Stand up from lying position, or lie down from standing position.

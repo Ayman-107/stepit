@@ -3,7 +3,7 @@
 StepIt plugin providing integration with ROS2 for communication, control, and input.
 Tested with ROS2 Humble (Ubuntu 22.04) and Jazzy (Ubuntu 24.04).
 
-Environment variables:
+### Environment Variables
 
 - `STEPIT_ROS2_NODE_NAME` (string): the name of the stepit ROS2 node.
 - `STEPIT_ROS2_QOS_RELIABILITY` (string): the default QoS reliability policy for ROS2 topics.
@@ -11,7 +11,7 @@ Environment variables:
 - `STEPIT_ROS2_QOS_HISTORY` (string): the default QoS history policy for ROS2 topics.
 - `STEPIT_JOY_NAME` (string): the name of the joystick to use for `ros2` joystick input.
 
-Provided factories:
+### Provided Factories
 
 - `stepit::ControlInput`: 
   - `ros2_msg`: controlling via ROS2 topic (`/control` of type `std_msgs/String`)

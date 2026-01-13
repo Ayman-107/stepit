@@ -2,7 +2,7 @@
 
 StepIt plugin containing utilities for debugging.
 
-Provided factories:
+### Provided Factories
 
 - `stepit::ControlInput`: `dummy`
 - `stepit::RobotApi`: `dummy`

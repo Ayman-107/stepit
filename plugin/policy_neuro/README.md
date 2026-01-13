@@ -2,30 +2,46 @@
 
 StepIt plugin for running neural network-based policy.
 
-Provided interfaces:
+### Provided Interfaces
 
-- `stepit::neuro_policy::FieldSource`
+- `stepit::neuro_policy::Actuator`: defines how to apply actions to the robot.
+- `stepit::neuro_policy::FieldSource`: provides input fields for neural networks.
 
-Provided factories:
+### Provided Factories
 
-- `stepit::Policy`: `neuro`
+- `stepit::Policy`:
+    - `neuro`: neural network-based locomotion policy.
+- `stepit::neuro_policy::Actuator`:
+    - `position`: translates actions to joint position commands.
+    - `velocity`: translates actions to joint velocity commands.
+    - `torque`: translates actions to joint torque commands.
+    - `hybrid`: translates actions to a combination of joint commands.
 - `stepit::neuro_policy::FieldSource`:
-    - `action_history`
-    - `action_filter`
-    - `action_reorder`
-    - `action_scaling`
-    - `actor`
-    - `cmd_height`
-    - `cmd_pitch`
-    - `cmd_roll`
-    - `cmd_vel`
-    - `estimator`
-    - `field_composite`
-    - `field_scaling`
-    - `heightmap`
-    - `joint_reorder`
-    - `roll_pitch`
-    - `proprioceptor`
+    - `action_history`: provides history of action commands.
+    - `action_filter`: applies low-pass filtering to action commands.
+    - `action_reordering`: reorders action commands.
+    - `actor`: infers the neural network actor to produce actions.
+    - `cmd_height`: provides height command input.
+    - `cmd_pitch`: provides pitch command input.
+    - `cmd_roll`: provides roll command input.
+    - `cmd_vel`: provides velocity command input.
+    - `estimator`: infers the neural network state estimator.
+    - `field_assembler`: assembles multiple fields into a single output field.
+    - `field_scaling`: scales and biases input fields.
+    - `heightmap`: provides heightmap input.
+    - `joint_reorder`: reorders joint states.
+    - `roll_pitch`: provides roll and pitch input.
+    - `proprioceptor`: provides proprioceptive input.
+
+### Joystick Key Bindings
+
+- `LAS-X`: sets the normalized target left / right linear velocity.
+- `LAS-Y`: sets the normalized target forward / backward linear velocity.
+- `RAS-X`: sets the normalized target yaw rate (angular velocity).
+- `RAS-Y`: sets the normalized target pitch.
+- `RT`: sets the scaling factor for target velocities.
+- `DPAD-LEFT` / `DPAD-RIGHT`: sets the normalized target roll.
+- `DPAD-UP` / `DPAD-DOWN`: increases / decreases the target height.
 
 ## Mechanisms
 
@@ -45,4 +61,4 @@ process data segments identified by FieldId.
 3. Automatically resolves and orders sources based on declared requirements, detecting circular dependencies.
 4. Calls `init()` on each source before control loop start.
 5. In each `act()` step, sequentially invokes `update()` and `postUpdate()`, assembles the action vector and
-   passed it to the `Agent`.
+   passes it to the `Agent`.

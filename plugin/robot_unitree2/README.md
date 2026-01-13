@@ -2,11 +2,11 @@
 
 StepIt plugin for controlling the Unitree Go2, B2 and G1 robot, and with the Unitree joysticks.
 
-Environment variables:
+### Environment Variables
 
 - `STEPIT_NETIF` (string, default: eth0): the network interface for communication.
 
-Provided factories:
+### Provided Factories
 
 - `stepit::RobotApi`: `b2`, `go2`, `g1_15dof`, `g1_23dof`, `g1_29dof`
 - `stepit::joystick::Joystick`:

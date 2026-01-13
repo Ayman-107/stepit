@@ -2,6 +2,6 @@
 
 StepIt plugin for neural network inference on Ascend AI processors, e.g. OrangePI AIpro.
 
-Provided factories:
+### Provided Factories
 
 - `stepit::NnrtApi`: `ascendcl`

@@ -2,7 +2,7 @@
 
 StepIt plugin for controlling the Unitree robot with legacy Unitree SDK.
 
-Provided factories:
+### Provided Factories
 
 - `stepit::RobotApi`: `aliengo` / `go1` / `b1`
 

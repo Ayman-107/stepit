@@ -2,10 +2,10 @@
 
 StepIt plugin for controlling the DeepRobotics X30 robot.
 
-Environment variables:
+### Environment Variables
 
 - `STEPIT_HOST_IP` (string): the host IP address of the robot, required by the robot SDK.
 
-Provided factories:
+### Provided Factories
 
 - `stepit::RobotApi`: `x30`

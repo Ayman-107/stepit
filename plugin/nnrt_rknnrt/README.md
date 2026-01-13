@@ -2,6 +2,6 @@
 
 StepIt plugin for neural network inference on Rockchip platforms, e.g. RK3588.
 
-Provided factories:
+### Provided Factories
 
 - `stepit::NnrtApi`: `rknnrt`

@@ -3,12 +3,12 @@
 StepIt plugin providing integration with ROS for communication, control, and input.
 Tested with ROS Noetic (Ubuntu 20.04).
 
-Environment variables:
+### Environment Variables
 
 - `STEPIT_ROS_NODE_NAME` (string): the name of the stepit ROS node.
 - `STEPIT_JOY_NAME` (string): the name of the joystick to use for `ros` joystick input.
 
-Provided factories:
+### Provided Factories
 
 - `stepit::ControlInput`:
   - `ros_msg`: controlling via ROS topic (`/control` of type `std_msgs/String`)

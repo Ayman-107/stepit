@@ -2,7 +2,7 @@
 
 StepIt plugin for ROS2-based field sources that subscribe ROS2 topics and feed data into the StepIt neuro policy.
 
-Provided factories:
+### Provided Factories
 
 `stepit::policy_neuro::FieldSource`:
 
@@ -11,3 +11,8 @@ Provided factories:
 - `cmd_roll`: subscribes to `std_msgs/msg/Float32`, `geometry_msgs/msg/Twist`, or `geometry_msgs/msg/TwistStamped` on a ROS2 topic and provides command roll field (`cmd_roll`).
 - `cmd_vel`: subscribes to `geometry_msgs/msg/Twist` or `geometry_msgs/msg/TwistStamped` on a ROS2 topic and provides command velocity fields (`cmd_vel`).
 - `heightmap` / `heightmap_uncertainty`: subscribe to a `grid_map_msgs/msg/GridMap` and a pose topic (`geometry_msgs/msg/Pose`, `geometry_msgs/msg/PoseStamped`, `geometry_msgs/msg/PoseWithCovariance`, `geometry_msgs/msg/PoseWithCovarianceStamped`, or `nav_msgs/msg/Odometry`), sample elevation and uncertainty values around the robot, and provide corresponding fields (`heightmap` / `heightmap_uncertainty`).
+
+### Joystick Key Bindings
+
+- `LB` + `A`: enables velocity and posture command subcriptions, or disables them if already enabled.
+- `LB` + `B`: enables heightmap and uncertainty subcriptions, or disables them if already enabled.

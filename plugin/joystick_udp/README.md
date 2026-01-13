@@ -2,6 +2,6 @@
 
 StepIt plugin with deeprobotics remote android gamepads.
 
-Provided factories:
+### Provided Factories
 
 - `stepit::joystick::Joystick`: `retroid`

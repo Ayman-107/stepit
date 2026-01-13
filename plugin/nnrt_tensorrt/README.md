@@ -2,7 +2,7 @@
 
 StepIt plugin for neural network inference on NVIDIA GPUs and Jetson platforms, e.g. Jetson Orin NX.
 
-Provided factories:
+### Provided Factories
 
 - `stepit::NnrtApi`: `tensorrt`
 

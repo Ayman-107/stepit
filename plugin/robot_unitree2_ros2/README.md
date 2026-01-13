@@ -9,7 +9,7 @@ Features:
 - State subscriber for low-level feedback (`/lowstate`, `u2ros2_msg::LowState`).
 - Joystick input from ROS2 topic (`/wirelesscontroller`, `u2ros2_msg::WirelessController`).
 
-Provided factories:
+### Provided Factories
 
 - `stepit::RobotApi`: `b2_ros2`, `go2_ros2`
 - `stepit::joystick::Joystick`: `unitree2_ros2`
