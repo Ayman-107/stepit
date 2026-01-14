@@ -145,5 +145,5 @@ const float *AscendCLApi::getOutput(std::size_t idx) {
 
 void AscendCLApi::synchronize() { STEPIT_ACL_CALL(aclrtSynchronizeStream, stream_); }
 
-STEPIT_REGISTER_NNRTAPI(ascendcl, kDefPriority, NnrtApi::makeDerived<AscendCLApi>);
+STEPIT_REGISTER_NNRTAPI(ascendcl, kDefPriority, NnrtApi::make<AscendCLApi>);
 }  // namespace stepit

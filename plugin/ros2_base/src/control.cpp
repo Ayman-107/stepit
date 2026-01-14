@@ -24,6 +24,6 @@ void Ros2SrvControl::srvCallback(const ControlSrv::Request::SharedPtr req, Contr
   res->message  = response.message;
 }
 
-STEPIT_REGISTER_CTRLINPUT(ros2_msg, kDefPriority, ControlInput::makeDerived<Ros2MsgControl>);
-STEPIT_REGISTER_CTRLINPUT(ros2_srv, kDefPriority, ControlInput::makeDerived<Ros2SrvControl>);
+STEPIT_REGISTER_CTRLINPUT(ros2_msg, kDefPriority, ControlInput::make<Ros2MsgControl>);
+STEPIT_REGISTER_CTRLINPUT(ros2_srv, kDefPriority, ControlInput::make<Ros2SrvControl>);
 }  // namespace stepit

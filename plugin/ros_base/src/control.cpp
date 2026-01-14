@@ -23,6 +23,6 @@ bool RosSrvControl::srvCallback(stepit_ros_msgs::Control::Request &req, stepit_r
   return true;
 }
 
-STEPIT_REGISTER_CTRLINPUT(ros_msg, kDefPriority, ControlInput::makeDerived<RosMsgControl>);
-STEPIT_REGISTER_CTRLINPUT(ros_srv, kDefPriority, ControlInput::makeDerived<RosSrvControl>);
+STEPIT_REGISTER_CTRLINPUT(ros_msg, kDefPriority, ControlInput::make<RosMsgControl>);
+STEPIT_REGISTER_CTRLINPUT(ros_srv, kDefPriority, ControlInput::make<RosSrvControl>);
 }  // namespace stepit

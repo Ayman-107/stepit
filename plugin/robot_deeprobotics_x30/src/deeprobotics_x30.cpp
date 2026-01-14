@@ -90,6 +90,6 @@ void DeepRoboticsX30uApi::getRecv(LowState &state_msg) {
   state_msg.tick = state_msg_->tick;
 }
 
-STEPIT_REGISTER_ROBOTAPI(x30, kDefPriority, RobotApi::makeDerived<DeepRoboticsX30Api>);
-STEPIT_REGISTER_ROBOTAPI(x30u, kDefPriority, RobotApi::makeDerived<DeepRoboticsX30uApi>);
+STEPIT_REGISTER_ROBOTAPI(x30, kDefPriority, RobotApi::make<DeepRoboticsX30Api>);
+STEPIT_REGISTER_ROBOTAPI(x30u, kDefPriority, RobotApi::make<DeepRoboticsX30uApi>);
 }  // namespace stepit

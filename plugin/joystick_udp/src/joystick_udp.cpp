@@ -67,6 +67,6 @@ class RetroidJoystick final : public UdpJoystick<udp_gamepad::RetroidGamepad> {
   }
 };
 
-STEPIT_REGISTER_JOYSTICK(retroid, kDefPriority, Joystick::makeDerived<RetroidJoystick>);
+STEPIT_REGISTER_JOYSTICK(retroid, kDefPriority, Joystick::make<RetroidJoystick>);
 }  // namespace joystick
 }  // namespace stepit

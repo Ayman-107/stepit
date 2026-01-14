@@ -74,5 +74,5 @@ std::vector<int64_t> OnnxrtApi::getShapeFromTypeInfo(const Ort::TypeInfo &type_i
   return shape;
 }
 
-STEPIT_REGISTER_NNRTAPI(onnxruntime, kDefPriority, NnrtApi::makeDerived<OnnxrtApi>);
+STEPIT_REGISTER_NNRTAPI(onnxruntime, kDefPriority, NnrtApi::make<OnnxrtApi>);
 }  // namespace stepit

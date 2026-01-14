@@ -192,5 +192,5 @@ const float *TensorRTApi::getOutput(std::size_t idx) {
   return out_data_[idx];
 }
 
-STEPIT_REGISTER_NNRTAPI(tensorrt, kDefPriority, NnrtApi::makeDerived<TensorRTApi>);
+STEPIT_REGISTER_NNRTAPI(tensorrt, kDefPriority, NnrtApi::make<TensorRTApi>);
 }  // namespace stepit

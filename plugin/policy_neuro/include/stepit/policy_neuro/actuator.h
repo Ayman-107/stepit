@@ -14,7 +14,6 @@ class Actuator : public FieldSource,
   using Registration = Interface::Registration;
   using Factory      = Interface::Factory;
   using Interface::make;
-  using Interface::makeDerived;
 
   bool update(const LowState &low_state, ControlRequests &requests, FieldMap &result) override { return true; }
   virtual void setLowCmd(LowCmd &cmd, cArrXf action) = 0;

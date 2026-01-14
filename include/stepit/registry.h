@@ -216,6 +216,32 @@ auto Registry<T, Args...>::Registration::operator=(Registration &&other) noexcep
   return *this;
 }
 
+/**
+ * @brief CRTP-style helper that equips a derived interface type with a global registry.
+ *
+ * This class provides:
+ * - A singleton registry for mapping string names to factories.
+ * - A convenient RAII registration helper to register implementations.
+ * - Factory functions to construct registered implementations by name.
+ *
+ * @tparam Derived  The concrete interface type inheriting from this helper (CRTP).
+ * @tparam Args     Constructor arguments forwarded to registered factories.
+ *
+ * @par Type aliases
+ * - Ptr:      Owning pointer type returned by factory methods (std::unique_ptr<Derived>).
+ * - Registry: The underlying ::stepit::Registry used to store factories.
+ * - Factory:  The factory callable type defined by Registry.
+ *
+ * @par Nested types
+ * - Registration: RAII object that registers a factory under a name with a priority.
+ *
+ * @par Factory methods
+ * - make(name, args...): Constructs an instance registered under @p name.
+ * - make<T>(args...): Constructs a concrete type @p T directly.
+ *
+ * @warning Registered factories are expected to create objects compatible with Derived.
+ * @throws Whatever exceptions may be thrown by the underlying registry/factory.
+ */
 template <typename Derived, typename... Args>
 class Interface {
  public:
@@ -240,7 +266,7 @@ class Interface {
   }
 
   template <typename T>
-  static Ptr makeDerived(Args... args) {
+  static Ptr make(Args... args) {
     return std::make_unique<T>(std::forward<Args>(args)...);
   }
 };

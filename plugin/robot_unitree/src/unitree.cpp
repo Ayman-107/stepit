@@ -82,11 +82,11 @@ constexpr const char *UnitreeApi::getRobotName() {
 }
 
 #if STEPIT_UNITREE_ROBOT == UNITREE_ALIENGO
-STEPIT_REGISTER_ROBOTAPI(aliengo, kDefPriority, RobotApi::makeDerived<UnitreeApi>);
+STEPIT_REGISTER_ROBOTAPI(aliengo, kDefPriority, RobotApi::make<UnitreeApi>);
 #elif STEPIT_UNITREE_ROBOT == UNITREE_GO1
-STEPIT_REGISTER_ROBOTAPI(go1, kDefPriority, RobotApi::makeDerived<UnitreeApi>);
+STEPIT_REGISTER_ROBOTAPI(go1, kDefPriority, RobotApi::make<UnitreeApi>);
 #elif STEPIT_UNITREE_ROBOT == UNITREE_B1
-STEPIT_REGISTER_ROBOTAPI(b1, kDefPriority, RobotApi::makeDerived<UnitreeApi>);
+STEPIT_REGISTER_ROBOTAPI(b1, kDefPriority, RobotApi::make<UnitreeApi>);
 #else
 #error "Unsupported robot type."
 #endif  // STEPIT_UNITREE_ROBOT

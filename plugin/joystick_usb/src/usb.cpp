@@ -131,6 +131,6 @@ void UsbJoystick::buttonHandler(std::shared_ptr<gamepad::device> dev) {
   slots_.buttons[bid].update(pressed);
 }
 
-STEPIT_REGISTER_JOYSTICK(usb, kDefPriority, Joystick::makeDerived<UsbJoystick>);
+STEPIT_REGISTER_JOYSTICK(usb, kDefPriority, Joystick::make<UsbJoystick>);
 }  // namespace joystick
 }  // namespace stepit

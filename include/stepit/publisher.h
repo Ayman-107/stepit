@@ -9,19 +9,20 @@
 #include <stepit/robot.h>
 
 namespace stepit {
-class Publisher: public Interface<Publisher> {
+class Publisher : public Interface<Publisher> {
  public:
   static Publisher &instance();
 
-  bool hasStatus(const std::string &name) const { return named_status_.find(name) != named_status_.end(); }
-  void updateStatus(const std::string &name, const std::string &value) { named_status_[name] = value; }
-  void removeStatus(const std::string &name) { named_status_.erase(name); }
+  bool hasStatus(const std::string &name) const;
+  void updateStatus(const std::string &name, const std::string &value);
+  void removeStatus(const std::string &name);
 
   virtual void publishStatus() {}
   virtual void publishLowLevel(const RobotSpec &spec, const LowState &state, const LowCmd &cmd) {}
   virtual void publishArray(const std::string &name, cArrXf arr) {}
 
  protected:
+  mutable std::mutex status_mutex_;
   std::map<std::string, std::string> named_status_;
 };
 

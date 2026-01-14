@@ -6,6 +6,21 @@ Publisher &Publisher::instance() {
   return *instance_;
 }
 
+bool Publisher::hasStatus(const std::string &name) const {
+  std::lock_guard<std::mutex> lock(status_mutex_);
+  return named_status_.find(name) != named_status_.end();
+}
+
+void Publisher::updateStatus(const std::string &name, const std::string &value) {
+  std::lock_guard<std::mutex> lock(status_mutex_);
+  named_status_[name] = value;
+}
+
+void Publisher::removeStatus(const std::string &name) {
+  std::lock_guard<std::mutex> lock(status_mutex_);
+  named_status_.erase(name);
+}
+
 namespace publisher {
 Filter::Filter() {
   getenv("STEPIT_PUBLISH_STATUS", publish_status);

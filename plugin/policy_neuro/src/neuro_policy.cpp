@@ -153,6 +153,6 @@ bool NeuroPolicy::isSatisfied(const std::set<FieldId> &requirements) const {
                      [this](FieldId field) { return available_fields_.find(field) != available_fields_.end(); });
 }
 
-STEPIT_REGISTER_POLICY(neuro, kDefPriority, Policy::makeDerived<NeuroPolicy>);
+STEPIT_REGISTER_POLICY(neuro, kDefPriority, Policy::make<NeuroPolicy>);
 }  // namespace neuro_policy
 }  // namespace stepit

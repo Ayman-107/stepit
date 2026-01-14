@@ -62,5 +62,5 @@ JoystickControl::Registration &JoystickControl::Registration::operator=(Registra
 }
 }  // namespace joystick
 
-STEPIT_REGISTER_CTRLINPUT(joystick, kDefPriority, ControlInput::makeDerived<JoystickControl>);
+STEPIT_REGISTER_CTRLINPUT(joystick, kDefPriority, ControlInput::make<JoystickControl>);
 }  // namespace stepit

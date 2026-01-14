@@ -133,8 +133,8 @@ NeuroActor::NeuroActor(const PolicySpec &, const std::string &home_dir) : NeuroF
 NeuroEstimator::NeuroEstimator(const PolicySpec &, const std::string &home_dir)
     : NeuroFieldSource("estimator", home_dir) {}
 
-STEPIT_REGISTER_FIELD_SOURCE(actor, kDefPriority, FieldSource::makeDerived<NeuroActor>);
-STEPIT_REGISTER_SOURCE_OF_FIELD(action, kDefPriority, FieldSource::makeDerived<NeuroActor>);
-STEPIT_REGISTER_FIELD_SOURCE(estimator, kDefPriority, FieldSource::makeDerived<NeuroEstimator>);
+STEPIT_REGISTER_FIELD_SOURCE(actor, kDefPriority, FieldSource::make<NeuroActor>);
+STEPIT_REGISTER_SOURCE_OF_FIELD(action, kDefPriority, FieldSource::make<NeuroActor>);
+STEPIT_REGISTER_FIELD_SOURCE(estimator, kDefPriority, FieldSource::make<NeuroEstimator>);
 }  // namespace neuro_policy
 }  // namespace stepit

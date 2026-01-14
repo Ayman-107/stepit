@@ -62,5 +62,5 @@ void DeepRoboticsLite3Api::getRecv(LowState &state_msg) {
   state_msg.tick = tick_;
 }
 
-STEPIT_REGISTER_ROBOTAPI(lite3, kDefPriority, RobotApi::makeDerived<DeepRoboticsLite3Api>);
+STEPIT_REGISTER_ROBOTAPI(lite3, kDefPriority, RobotApi::make<DeepRoboticsLite3Api>);
 }  // namespace stepit

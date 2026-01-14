@@ -16,5 +16,5 @@ void DummyRobotApi::getRecv(LowState &state) {
   state           = low_state_;
 }
 
-STEPIT_REGISTER_ROBOTAPI(dummy, kMinPriority, RobotApi::makeDerived<DummyRobotApi>);
+STEPIT_REGISTER_ROBOTAPI(dummy, kMinPriority, RobotApi::make<DummyRobotApi>);
 }  // namespace stepit
