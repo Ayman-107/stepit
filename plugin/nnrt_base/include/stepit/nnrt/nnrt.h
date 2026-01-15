@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-#include <llu/yaml.h>
 #include <stepit/registry.h>
 
 namespace stepit {
@@ -52,7 +51,7 @@ class NnrtApi : public Interface<NnrtApi, const std::string & /* path */, const 
 
   std::string path_;
   YAML::Node config_;
-  std::size_t num_in_ = 0, num_out_ = 0;
+  std::size_t num_in_{}, num_out_{};
   std::vector<std::vector<int64_t>> in_shapes_, out_shapes_;
   std::vector<int64_t> in_sizes_, out_sizes_;
   std::vector<std::string> in_names_, out_names_;

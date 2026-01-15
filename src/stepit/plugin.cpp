@@ -75,6 +75,21 @@ void PluginManager::loadPlugins(const std::string &plugin_dir, int &argc, char *
   }
 }
 
+std::vector<std::string> PluginManager::retrievePluginArgs(int &argc, char *argv[]) {
+  int original_argc = argc;
+  std::vector<std::string> plugin_args{argv[0]};
+  for (int i{1}; i < original_argc; ++i) {
+    if (std::strcmp(argv[i], "--") == 0) {
+      argc = i;
+      for (int j{i + 1}; j < original_argc; ++j) {
+        plugin_args.emplace_back(argv[j]);
+      }
+      break;
+    }
+  }
+  return plugin_args;
+}
+
 std::vector<std::string> PluginManager::getPluginDirs(const std::string &executable_path) {
   std::vector<std::string> plugin_dirs;
   if (not getenv("STEPIT_PLUGIN_DIRS", plugin_dirs)) {

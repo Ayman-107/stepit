@@ -13,6 +13,7 @@ class PluginManager {
   explicit PluginManager(std::vector<std::string> &args);
   ~PluginManager();
   void loadPlugins(const std::string &plugin_dir, int &argc, char *argv[]);
+  static std::vector<std::string> retrievePluginArgs(int &argc, char *argv[]);
 
  private:
   static std::vector<std::string> getPluginDirs(const std::string &executable_path);
@@ -26,6 +27,7 @@ class PluginManager {
    * @return True if the filename is a valid plugin name, false otherwise.
    */
   static bool isValidPlugin(const std::string &filename);
+
   std::vector<void *> handles_;
 };
 }  // namespace stepit
