@@ -1,4 +1,3 @@
-#include <llu/math.h>
 #include <stepit/logging.h>
 #include <stepit/robot/deeprobotics_x30.h>
 
@@ -15,6 +14,8 @@ void DeepRoboticsX30BaseApi::getControl(bool enable) {
     low_state_sub_.startWork();
     low_cmd_pub_->robot_state_init();
     low_cmd_pub_->control_get(ABLE);
+  } else {
+    low_cmd_pub_->control_get(UNABLE);
   }
 }
 

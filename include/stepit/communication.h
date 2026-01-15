@@ -14,7 +14,7 @@ int setThreadRT(pthread_t thread);
 class Communication {
  public:
   explicit Communication(const std::string &robot_type);
-  virtual ~Communication() { stopCommunicationThread(); }
+  virtual ~Communication();
 
   const RobotApi::Ptr &api() const { return api_; }
   const RobotSpec &spec() const { return api_->getSpec(); }

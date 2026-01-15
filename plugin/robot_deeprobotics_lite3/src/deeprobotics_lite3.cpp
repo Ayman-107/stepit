@@ -1,4 +1,3 @@
-#include <llu/math.h>
 #include <stepit/logging.h>
 #include <stepit/robot/deeprobotics_lite3.h>
 
@@ -14,13 +13,15 @@ DeepRoboticsLite3Api::DeepRoboticsLite3Api() : RobotApi(kRobotName) {
   });
   state_msg_ = &low_state_sub_->GetState();
 }
-DeepRoboticsLite3Api::~DeepRoboticsLite3Api() { low_cmd_pub_->ControlGet(ROBOT); }
+DeepRoboticsLite3Api::~DeepRoboticsLite3Api() {}
 
 void DeepRoboticsLite3Api::getControl(bool enable) {
   if (enable) {
     low_state_sub_->StartWork();
     low_cmd_pub_->RobotStateInit();
     low_cmd_pub_->ControlGet(SDK);
+  } else {
+    low_cmd_pub_->ControlGet(ROBOT);
   }
 }
 
