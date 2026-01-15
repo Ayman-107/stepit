@@ -22,13 +22,9 @@ class G1DoF15Api : public RobotApi {
   void send() override;
   void recv() override {}
 
-  static constexpr std::size_t kDoF       = 15;
+  static constexpr std::size_t kLegDoF    = 15;
   static constexpr std::size_t kArmDoF    = 14;
-  static constexpr std::size_t kNumLegs   = 2;
   static constexpr const char *kRobotName = "g1_15dof";
-  std::size_t getDoF() const override { return kDoF; }
-  std::size_t getNumLegs() const override { return kNumLegs; }
-  std::size_t getCommFreq() const override { return 500; }
 
  private:
   void callback(const hg_msg::LowState_ *msg);
@@ -42,7 +38,7 @@ class G1DoF15Api : public RobotApi {
   LowState low_state_;
   std::mutex mutex_;
 
-  ArrXf default_arm_pos_{kArmDoF};
+  ArrXf default_arm_pos_;
   std::array<MotorState, kArmDoF> arm_state_{};
   LowCmd arm_cmd_{kArmDoF};
 };
@@ -56,12 +52,7 @@ class G1DoF23Api final : public RobotApi {
   void send() override;
   void recv() override {}
 
-  static constexpr std::size_t kDoF       = 23;
-  static constexpr std::size_t kNumLegs   = 2;
   static constexpr const char *kRobotName = "g1_23dof";
-  std::size_t getDoF() const override { return kDoF; }
-  std::size_t getNumLegs() const override { return kNumLegs; }
-  std::size_t getCommFreq() const override { return 500; }
 
  private:
   void callback(const hg_msg::LowState_ *msg);
@@ -85,12 +76,7 @@ class G1DoF29Api final : public RobotApi {
   void send() override;
   void recv() override {}
 
-  static constexpr std::size_t kDoF       = 29;
-  static constexpr std::size_t kNumLegs   = 2;
   static constexpr const char *kRobotName = "g1_29dof";
-  std::size_t getDoF() const override { return kDoF; }
-  std::size_t getNumLegs() const override { return kNumLegs; }
-  std::size_t getCommFreq() const override { return 500; }
 
  private:
   void callback(const hg_msg::LowState_ *msg);
@@ -101,7 +87,6 @@ class G1DoF29Api final : public RobotApi {
   LowState low_state_;
   std::mutex mutex_;
 };
-
 }  // namespace stepit
 
 #endif  // STEPIT_ROBOT_UNITREE2_G1_H_

@@ -81,14 +81,19 @@ struct RobotSpec {
   std::vector<std::string> joint_names;
   /* Names of the end effectors (feet). */
   std::vector<std::string> foot_names;
-  /* Degrees of freedom of the robot. */
-  std::size_t dof;
+  /* Degree of freedom of the robot. */
+  std::size_t dof{};
+  /* Number of legs of the robot. */
+  std::size_t num_legs{};
+  /* Communication Frequency (unit: Hz). */
+  std::size_t comm_freq{};
+
   /* Proportional gain used for following fixed trajectories. */
   std::vector<float> kp;
   /* Derivative gain used for following fixed trajectories. */
   std::vector<float> kd;
   /* Maximum joint position deviation allowed when following fixed trajectories (unit: rad). */
-  float stuck_threshold{deg2rad(20.)};
+  float stuck_threshold{deg2rad(20.0F)};
 
   struct Safety {
     /* Whether to freeze the robot when safety violations are detected. */
@@ -123,9 +128,9 @@ class RobotApi : public Interface<RobotApi> {
   virtual void recv()                  = 0;
 
   const RobotSpec &getSpec() const { return spec_; }
-  virtual std::size_t getDoF() const      = 0;
-  virtual std::size_t getNumLegs() const  = 0;
-  virtual std::size_t getCommFreq() const = 0;
+  std::size_t getDoF() const { return spec_.dof; }
+  std::size_t getNumLegs() const { return spec_.num_legs; }
+  std::size_t getCommFreq() const { return spec_.comm_freq; }
 
  protected:
   YAML::Node config_;

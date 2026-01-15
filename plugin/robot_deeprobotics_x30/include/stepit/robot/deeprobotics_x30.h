@@ -14,12 +14,6 @@ class DeepRoboticsX30BaseApi : public RobotApi {
   void send() override {}
   void recv() override {}
 
-  static constexpr std::size_t kDoF     = 12;
-  static constexpr std::size_t kNumLegs = 4;
-  std::size_t getDoF() const override { return kDoF; }
-  std::size_t getNumLegs() const override { return kNumLegs; }
-  std::size_t getCommFreq() const override { return 1000; }
-
  protected:
   std::unique_ptr<x30::SendToRobot> low_cmd_pub_;
   x30::ParseCommand low_state_sub_;

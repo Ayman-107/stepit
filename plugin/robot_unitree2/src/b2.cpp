@@ -2,7 +2,7 @@
 #include <stepit/robot/unitree2/b2.h>
 
 namespace stepit {
-B2Api::B2Api() : RobotApi(kRobotName), low_state_(kDoF, kNumLegs) {
+B2Api::B2Api() : RobotApi(kRobotName), low_state_(getDoF(), getNumLegs()) {
   yml::setIf(config_, "joint_vel_filter_window", joint_vel_filter_window_);
   if (joint_vel_filter_window_ > 0) low_state_buf_.allocate(joint_vel_filter_window_);
 
@@ -33,7 +33,7 @@ void B2Api::getControl(bool enable) {
 }
 
 void B2Api::setSend(LowCmd &cmd_msg) {
-  for (std::size_t i{}; i < kDoF; ++i) {
+  for (std::size_t i{}; i < getDoF(); ++i) {
     low_cmd_.motor_cmd()[i].q()   = cmd_msg[i].q;
     low_cmd_.motor_cmd()[i].dq()  = cmd_msg[i].dq;
     low_cmd_.motor_cmd()[i].kp()  = cmd_msg[i].Kp;
@@ -59,12 +59,12 @@ void B2Api::callback(const u2_msg::LowState_ *msg) {
   low_state_.imu.accelerometer = msg->imu_state().accelerometer();
   low_state_.imu.gyroscope     = msg->imu_state().gyroscope();
 
-  for (std::size_t i{}; i < kDoF; ++i) {
+  for (std::size_t i{}; i < getDoF(); ++i) {
     low_state_.motor_state[i].q   = msg->motor_state()[i].q();
     low_state_.motor_state[i].dq  = msg->motor_state()[i].dq();
     low_state_.motor_state[i].tor = msg->motor_state()[i].tau_est();
   }
-  for (std::size_t i{}; i < kNumLegs; ++i) {
+  for (std::size_t i{}; i < getNumLegs(); ++i) {
     low_state_.foot_force[i] = msg->foot_force()[i];
   }
   low_state_.tick = msg->tick();
@@ -74,7 +74,7 @@ void B2Api::callback(const u2_msg::LowState_ *msg) {
       const auto &front = low_state_buf_.front();
       float dt          = static_cast<float>(low_state_.tick - front.tick) * 0.001F;
       if (dt <= 0.0F) dt = static_cast<float>(low_state_buf_.size()) / getCommFreq();
-      for (std::size_t i{}; i < kDoF; ++i) {
+      for (std::size_t i{}; i < getDoF(); ++i) {
         low_state_.motor_state[i].dq = (low_state_.motor_state[i].q - front.motor_state[i].q) / dt;
       }
     }

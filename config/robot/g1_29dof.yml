@@ -19,19 +19,20 @@ joint_names:
   - "L_SHOULDER_ROLL"
   - "L_SHOULDER_YAW"
   - "L_ELBOW"
-  - "L_WRIST_ROLL" # Added wrist joints
+  - "L_WRIST_ROLL"
   - "L_WRIST_PITCH"
   - "L_WRIST_YAW"
   - "R_SHOULDER_PITCH"
   - "R_SHOULDER_ROLL"
   - "R_SHOULDER_YAW"
   - "R_ELBOW"
-  - "R_WRIST_ROLL" # Added wrist joints
+  - "R_WRIST_ROLL"
   - "R_WRIST_PITCH"
   - "R_WRIST_YAW"
 foot_names:
   - "L_FOOT"
   - "R_FOOT"
+comm_freq: 500
 kp: 100.0
 kd: 2.0
 standing_cfg: [ 

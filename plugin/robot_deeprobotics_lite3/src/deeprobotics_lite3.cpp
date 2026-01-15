@@ -25,7 +25,7 @@ void DeepRoboticsLite3Api::getControl(bool enable) {
 }
 
 void DeepRoboticsLite3Api::setSend(LowCmd &cmd_msg) {
-  for (std::size_t i{}; i < kDoF; ++i) {
+  for (std::size_t i{}; i < getDoF(); ++i) {
     cmd_msg_.joint_cmd[i].position = cmd_msg[i].q;
     cmd_msg_.joint_cmd[i].velocity = cmd_msg[i].dq;
     cmd_msg_.joint_cmd[i].kp       = cmd_msg[i].Kp;
@@ -51,12 +51,12 @@ void DeepRoboticsLite3Api::getRecv(LowState &state_msg) {
   state_msg.imu.accelerometer[1] = state_msg_->imu.acc_y;
   state_msg.imu.accelerometer[2] = state_msg_->imu.acc_z;
 
-  for (std::size_t i{}; i < kDoF; ++i) {
+  for (std::size_t i{}; i < getDoF(); ++i) {
     state_msg.motor_state[i].q   = state_msg_->joint_data.joint_data[i].position;
     state_msg.motor_state[i].dq  = state_msg_->joint_data.joint_data[i].velocity;
     state_msg.motor_state[i].tor = state_msg_->joint_data.joint_data[i].torque;
   }
-  for (std::size_t i{}; i < kNumLegs; ++i) {
+  for (std::size_t i{}; i < getNumLegs(); ++i) {
     state_msg.foot_force[i] = static_cast<float>(cmVec3d(state_msg_->contact_force.leg_force + i * 3).norm());
   }
   state_msg.tick = tick_;

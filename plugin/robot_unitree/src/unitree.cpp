@@ -37,7 +37,7 @@ void UnitreeApi::getControl(bool enable) {
 }
 
 void UnitreeApi::setSend(LowCmd &cmd_msg) {
-  for (std::size_t i{}; i < kDoF; ++i) {
+  for (std::size_t i{}; i < getDoF(); ++i) {
     low_cmd_.motorCmd[i].q   = cmd_msg[i].q;
     low_cmd_.motorCmd[i].dq  = cmd_msg[i].dq;
     low_cmd_.motorCmd[i].Kp  = cmd_msg[i].Kp;
@@ -55,12 +55,12 @@ void UnitreeApi::getRecv(LowState &state_msg) {
   state_msg.imu.accelerometer = low_state_.imu.accelerometer;
   state_msg.imu.rpy           = low_state_.imu.rpy;
 
-  for (std::size_t i{}; i < kDoF; ++i) {
+  for (std::size_t i{}; i < getDoF(); ++i) {
     state_msg.motor_state[i].q   = low_state_.motorState[i].q;
     state_msg.motor_state[i].dq  = low_state_.motorState[i].dq;
     state_msg.motor_state[i].tor = low_state_.motorState[i].tauEst;
   }
-  for (std::size_t i{}; i < kNumLegs; ++i) {
+  for (std::size_t i{}; i < getNumLegs(); ++i) {
     state_msg.foot_force[i] = low_state_.footForce[i];
   }
 }

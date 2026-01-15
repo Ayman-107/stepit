@@ -22,12 +22,7 @@ class B2Api final : public RobotApi {
   void send() override;
   void recv() override {}
 
-  static constexpr std::size_t kDoF       = 12;
-  static constexpr std::size_t kNumLegs   = 4;
   static constexpr const char *kRobotName = "b2";
-  std::size_t getDoF() const override { return kDoF; }
-  std::size_t getNumLegs() const override { return kNumLegs; }
-  std::size_t getCommFreq() const override { return 500; }
 
  private:
   void callback(const u2_msg::LowState_ *msg);

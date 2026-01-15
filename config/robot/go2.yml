@@ -17,6 +17,7 @@ foot_names:
   - "FL_foot"
   - "RR_foot"
   - "RL_foot"
+comm_freq: 500
 kp: 100.0
 kd: 2.0
 standing_cfg: [

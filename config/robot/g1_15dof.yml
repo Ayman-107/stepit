@@ -18,6 +18,7 @@ joint_names:
 foot_names:
   - "L_FOOT"
   - "R_FOOT"
+comm_freq: 500
 kp: 100.0
 kd: 2.0
 standing_cfg: [

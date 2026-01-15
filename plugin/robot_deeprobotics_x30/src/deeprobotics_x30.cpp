@@ -21,7 +21,7 @@ void DeepRoboticsX30BaseApi::getControl(bool enable) {
 DeepRoboticsX30Api::DeepRoboticsX30Api() : DeepRoboticsX30BaseApi(kRobotName) {}
 
 void DeepRoboticsX30Api::setSend(LowCmd &cmd_msg) {
-  for (std::size_t i{}; i < kDoF; ++i) {
+  for (std::size_t i{}; i < getDoF(); ++i) {
     cmd_msg_.joint_cmd[i].pos = cmd_msg[i].q;
     cmd_msg_.joint_cmd[i].vel = cmd_msg[i].dq;
     cmd_msg_.joint_cmd[i].tor = cmd_msg[i].tor;
@@ -50,12 +50,12 @@ void copyImuData(const x30::ImuDataSDK &src, LowState::IMU &dst) {
 
 void DeepRoboticsX30Api::getRecv(LowState &state_msg) {
   copyImuData(state_msg_->imu, state_msg.imu);
-  for (std::size_t i{}; i < kDoF; ++i) {
+  for (std::size_t i{}; i < getDoF(); ++i) {
     state_msg.motor_state[i].q   = state_msg_->joint_data[i].pos;
     state_msg.motor_state[i].dq  = state_msg_->joint_data[i].vel;
     state_msg.motor_state[i].tor = state_msg_->joint_data[i].tor;
   }
-  for (std::size_t i{}; i < kNumLegs; ++i) {
+  for (std::size_t i{}; i < getNumLegs(); ++i) {
     state_msg.foot_force[i] = cmVec3f(state_msg_->contact_force.data() + i * 3).norm();
   }
   state_msg.tick = state_msg_->tick;
@@ -67,7 +67,7 @@ constexpr std::size_t DeepRoboticsX30uApi::kJointOrder[];
 constexpr std::size_t DeepRoboticsX30uApi::kFootOrder[];
 
 void DeepRoboticsX30uApi::setSend(LowCmd &cmd_msg) {
-  for (std::size_t i{}; i < kDoF; ++i) {
+  for (std::size_t i{}; i < getDoF(); ++i) {
     cmd_msg_.joint_cmd[i].pos = -cmd_msg[kJointOrder[i]].q;
     cmd_msg_.joint_cmd[i].vel = -cmd_msg[kJointOrder[i]].dq;
     cmd_msg_.joint_cmd[i].tor = -cmd_msg[kJointOrder[i]].tor;
@@ -79,12 +79,12 @@ void DeepRoboticsX30uApi::setSend(LowCmd &cmd_msg) {
 
 void DeepRoboticsX30uApi::getRecv(LowState &state_msg) {
   copyImuData(state_msg_->imu, state_msg.imu);
-  for (std::size_t i{}; i < kDoF; ++i) {
+  for (std::size_t i{}; i < getDoF(); ++i) {
     state_msg.motor_state[kJointOrder[i]].q   = -state_msg_->joint_data[i].pos;
     state_msg.motor_state[kJointOrder[i]].dq  = -state_msg_->joint_data[i].vel;
     state_msg.motor_state[kJointOrder[i]].tor = -state_msg_->joint_data[i].tor;
   }
-  for (std::size_t i{}; i < kNumLegs; ++i) {
+  for (std::size_t i{}; i < getNumLegs(); ++i) {
     state_msg.foot_force[kFootOrder[i]] = cmVec3f(state_msg_->contact_force.data() + i * 3).norm();
   }
   state_msg.tick = state_msg_->tick;

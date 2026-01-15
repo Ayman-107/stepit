@@ -9,7 +9,7 @@
 
 namespace stepit {
 Unitree2Ros2Quadruped::Unitree2Ros2Quadruped(const std::string &robot_name)
-    : RobotApi(robot_name), low_state_(kDoF, kNumLegs) {
+    : RobotApi(robot_name), low_state_(getDoF(), getNumLegs()) {
   low_cmd_.head[0]    = 0xFE;
   low_cmd_.head[1]    = 0xEF;
   low_cmd_.level_flag = 0xFF;
@@ -33,7 +33,7 @@ void Unitree2Ros2Quadruped::getControl(bool enable) {
 }
 
 void Unitree2Ros2Quadruped::setSend(LowCmd &cmd_msg) {
-  for (std::size_t i{}; i < kDoF; ++i) {
+  for (std::size_t i{}; i < getDoF(); ++i) {
     low_cmd_.motor_cmd[i].q   = cmd_msg[i].q;
     low_cmd_.motor_cmd[i].dq  = cmd_msg[i].dq;
     low_cmd_.motor_cmd[i].kp  = cmd_msg[i].Kp;
@@ -88,12 +88,12 @@ void Unitree2Ros2Quadruped::callback(const u2ros2_msg::LowState::SharedPtr msg) 
   low_state_.imu.accelerometer = msg->imu_state.accelerometer;
   low_state_.imu.gyroscope     = msg->imu_state.gyroscope;
 
-  for (std::size_t i{}; i < kDoF; ++i) {
+  for (std::size_t i{}; i < getDoF(); ++i) {
     low_state_.motor_state[i].q   = msg->motor_state[i].q;
     low_state_.motor_state[i].dq  = msg->motor_state[i].dq;
     low_state_.motor_state[i].tor = msg->motor_state[i].tau_est;
   }
-  for (std::size_t i{}; i < kNumLegs; ++i) {
+  for (std::size_t i{}; i < getNumLegs(); ++i) {
     low_state_.foot_force[i] = msg->foot_force[i];
   }
   low_state_.tick = msg->tick;

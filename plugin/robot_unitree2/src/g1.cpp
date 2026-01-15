@@ -1,7 +1,7 @@
 #include <stepit/robot/unitree2/g1.h>
 
 namespace stepit {
-G1DoF15Api::G1DoF15Api() : RobotApi(kRobotName), low_state_(kDoF, kNumLegs) {
+G1DoF15Api::G1DoF15Api() : RobotApi(kRobotName), low_state_(getDoF(), getNumLegs()) {
   low_cmd_.mode_pr(0);  // {0:PR, 1:AB}
   low_cmd_.mode_machine(5);
 
@@ -13,6 +13,7 @@ G1DoF15Api::G1DoF15Api() : RobotApi(kRobotName), low_state_(kDoF, kNumLegs) {
     motor_cmd.kp()   = 0;
     motor_cmd.kd()   = 0;
   }
+  default_arm_pos_.resize(kArmDoF);
   default_arm_pos_ << 0, 0.62, 0, 1.04, 0, 0, 0, 0, -0.62, 0, 1.04, 0, 0, 0;
 }
 
@@ -29,7 +30,7 @@ void G1DoF15Api::getControl(bool enable) {
 void G1DoF15Api::setSend(LowCmd &cmd_msg) {
   setArmCommands();
 
-  for (int i{}; i < kDoF; ++i) {
+  for (int i{}; i < kLegDoF; ++i) {
     low_cmd_.motor_cmd()[i].mode() = 1;
     low_cmd_.motor_cmd()[i].q()    = cmd_msg[i].q;
     low_cmd_.motor_cmd()[i].dq()   = cmd_msg[i].dq;
@@ -38,12 +39,12 @@ void G1DoF15Api::setSend(LowCmd &cmd_msg) {
     low_cmd_.motor_cmd()[i].tau()  = cmd_msg[i].tor;
   }
   for (int i{}; i < kArmDoF; i++) {
-    low_cmd_.motor_cmd()[i + kDoF].mode() = 1;
-    low_cmd_.motor_cmd()[i + kDoF].q()    = arm_cmd_[i].q;
-    low_cmd_.motor_cmd()[i + kDoF].dq()   = arm_cmd_[i].dq;
-    low_cmd_.motor_cmd()[i + kDoF].kp()   = arm_cmd_[i].Kp;
-    low_cmd_.motor_cmd()[i + kDoF].kd()   = arm_cmd_[i].Kd;
-    low_cmd_.motor_cmd()[i + kDoF].tau()  = arm_cmd_[i].tor;
+    low_cmd_.motor_cmd()[i + kLegDoF].mode() = 1;
+    low_cmd_.motor_cmd()[i + kLegDoF].q()    = arm_cmd_[i].q;
+    low_cmd_.motor_cmd()[i + kLegDoF].dq()   = arm_cmd_[i].dq;
+    low_cmd_.motor_cmd()[i + kLegDoF].kp()   = arm_cmd_[i].Kp;
+    low_cmd_.motor_cmd()[i + kLegDoF].kd()   = arm_cmd_[i].Kd;
+    low_cmd_.motor_cmd()[i + kLegDoF].tau()  = arm_cmd_[i].tor;
   }
 }
 
@@ -64,15 +65,15 @@ void G1DoF15Api::callback(const hg_msg::LowState_ *msg) {
   low_state_.imu.accelerometer = msg->imu_state().accelerometer();
   low_state_.imu.gyroscope     = msg->imu_state().gyroscope();
 
-  for (int i{}; i < kDoF; ++i) {
+  for (int i{}; i < kLegDoF; ++i) {
     low_state_.motor_state[i].q   = msg->motor_state()[i].q();
     low_state_.motor_state[i].dq  = msg->motor_state()[i].dq();
     low_state_.motor_state[i].tor = msg->motor_state()[i].tau_est();
   }
   for (int i{}; i < kArmDoF; ++i) {
-    arm_state_[i].q   = msg->motor_state()[i + kDoF].q();
-    arm_state_[i].dq  = msg->motor_state()[i + kDoF].dq();
-    arm_state_[i].tor = msg->motor_state()[i + kDoF].tau_est();
+    arm_state_[i].q   = msg->motor_state()[i + kLegDoF].q();
+    arm_state_[i].dq  = msg->motor_state()[i + kLegDoF].dq();
+    arm_state_[i].tor = msg->motor_state()[i + kLegDoF].tau_est();
   }
   low_state_.tick = msg->tick();
 }
@@ -88,9 +89,7 @@ void G1DoF15Api::setArmCommands() {
   }
 }
 
-constexpr std::size_t G1DoF15Api::kArmDoF;
-
-G1DoF23Api::G1DoF23Api() : RobotApi("g1_23dof"), low_state_(kDoF, kNumLegs) {
+G1DoF23Api::G1DoF23Api() : RobotApi(kRobotName), low_state_(getDoF(), getNumLegs()) {
   low_cmd_.mode_pr(0);  // {0:PR, 1:AB}
   low_cmd_.mode_machine(5);
 
@@ -192,7 +191,7 @@ void G1DoF23Api::callback(const hg_msg::LowState_ *msg) {
   curr_arm_pos_[5] = msg->motor_state()[28].q();
 }
 
-G1DoF29Api::G1DoF29Api() : RobotApi("g1_29dof"), low_state_(kDoF, kNumLegs) {
+G1DoF29Api::G1DoF29Api() : RobotApi(kRobotName), low_state_(getDoF(), getNumLegs()) {
   low_cmd_.mode_pr(0);  // {0:PR, 1:AB}
   low_cmd_.mode_machine(5);
 
@@ -217,7 +216,7 @@ void G1DoF29Api::getControl(bool enable) {
 }
 
 void G1DoF29Api::setSend(LowCmd &cmd_msg) {
-  for (int i{}; i < kDoF; ++i) {
+  for (int i{}; i < getDoF(); ++i) {
     low_cmd_.motor_cmd()[i].mode() = 1;
     low_cmd_.motor_cmd()[i].q()    = cmd_msg[i].q;
     low_cmd_.motor_cmd()[i].dq()   = cmd_msg[i].dq;
@@ -244,7 +243,7 @@ void G1DoF29Api::callback(const hg_msg::LowState_ *msg) {
   low_state_.imu.accelerometer = msg->imu_state().accelerometer();
   low_state_.imu.gyroscope     = msg->imu_state().gyroscope();
 
-  for (int i{}; i < kDoF; ++i) {
+  for (int i{}; i < getDoF(); ++i) {
     low_state_.motor_state[i].q   = msg->motor_state()[i].q();
     low_state_.motor_state[i].dq  = msg->motor_state()[i].dq();
     low_state_.motor_state[i].tor = msg->motor_state()[i].tau_est();

@@ -17,12 +17,7 @@ class UnitreeApi final : public RobotApi {
   void send() override;
   void recv() override;
 
-  static constexpr std::size_t kDoF     = 12;
-  static constexpr std::size_t kNumLegs = 4;
   static constexpr const char *getRobotName();
-  std::size_t getDoF() const override { return kDoF; }
-  std::size_t getNumLegs() const override { return kNumLegs; }
-  std::size_t getCommFreq() const override { return 1000; }
 
  private:
   unitree::UDP udp_;

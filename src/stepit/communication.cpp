@@ -67,7 +67,6 @@ Communication::Communication(const std::string &robot_type)
       comm_freq_{api_->getCommFreq()},
       low_state_msg_(api_->getDoF(), api_->getNumLegs()),
       low_cmd_msg_(api_->getDoF()) {
-  STEPIT_ASSERT_EQ(spec().dof, dof(), "Ambiguous number of joints.");
   STEPIT_ASSERT_EQ(spec().foot_names.size(), api_->getNumLegs(), "Ambiguous number of legs.");
   api_->getControl(true);
 }
