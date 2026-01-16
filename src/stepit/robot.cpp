@@ -16,6 +16,7 @@ RobotSpec::RobotSpec(const YAML::Node &config) {
 
   kp.resize(dof);
   kd.resize(dof);
+  stuck_threshold.resize(dof, deg2rad(20.0F));
   standing_cfg.resize(dof);
   lying_cfg.resize(dof);
 

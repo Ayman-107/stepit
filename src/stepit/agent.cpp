@@ -339,7 +339,8 @@ Agent::State Agent::eventStandingUp() {
     setActive();
   }
   for (std::size_t i{}; i < dof(); ++i) {
-    if (std::abs(command_[i].q - joint_pos[i]) > spec().stuck_threshold) {
+    float stuck_threshold = spec().stuck_threshold[i];
+    if (stuck_threshold > 0 and std::abs(command_[i].q - joint_pos[i]) > stuck_threshold) {
       STEPIT_WARN("Failed to stand up as legs are probably stuck.");
       return State::kResting;
     }

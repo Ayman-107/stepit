@@ -93,7 +93,7 @@ struct RobotSpec {
   /* Derivative gain used for following fixed trajectories. */
   std::vector<float> kd;
   /* Maximum joint position deviation allowed when following fixed trajectories (unit: rad). */
-  float stuck_threshold{deg2rad(20.0F)};
+  std::vector<float> stuck_threshold;
 
   struct Safety {
     /* Whether to freeze the robot when safety violations are detected. */
